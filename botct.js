@@ -66,12 +66,12 @@ const discordProducts = {
     nitro_promo_via_link: {
         name: 'Nitro Promotion 3 Month - Via Link',
         price: '25.000',
-        details: 'Nitro Promotion 3 Bulan via Link\n• Bisa untuk semua user / new user\n• Tidak dicialinkan oleh admin\n• Membutuhkan VCC sendiri'
+        details: 'Nitro Promotion 3 Bulan via Link\n• Bisa untuk semua user / new user\n• Tidak diclaimkan oleh admin\n• Membutuhkan VCC sendiri'
     },
     nitro_promo_via_log: {
         name: 'Nitro Promotion 3 Month - Via Log',
         price: '45.000',
-        details: 'Nitro Promotion 3 Bulan via Log\n• Bisa untuk semua user / new user\n• Dicialinkan oleh admin\n• Terima beres'
+        details: 'Nitro Promotion 3 Bulan via Log\n• Bisa untuk semua user / new user\n• Diclaimkan oleh admin\n• Terima beres'
     },
     joki_quest: {
         name: 'Joki Quest Discord (Orbs)',
@@ -220,8 +220,8 @@ const messageCooldowns = new Collection();
 const MESSAGE_COOLDOWN = 10000; // 10 detik
 
 // Konfigurasi channel (ganti dengan ID channel Anda)
-const ORDER_CHANNEL_ID = '1457318847571820720';
-const DIRECT_LINK = 'https://discord.com/channels/573092742398345223/1457318847571820720';
+const ORDER_CHANNEL_ID = '1452593411734376490';
+const DIRECT_LINK = 'https://discord.com/channels/1452584833766129686/1452593411734376490';
 const ORDER_CHANNEL_MENTION = `<#${ORDER_CHANNEL_ID}>`;
 
 // URL gambar untuk embed
@@ -599,10 +599,11 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'streaming');
 
-        await interaction.update({ 
-            content: '', 
+        // PERUBAHAN: Gunakan reply dengan ephemeral
+        await interaction.reply({ 
             embeds: [detailEmbed], 
-            components: [buttonRow] 
+            components: [buttonRow],
+            ephemeral: true  // ← INI YANG MEMBUAT HANYA USER YANG MELIHAT
         });
     }
 
@@ -628,10 +629,11 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'discord');
 
-        await interaction.update({ 
-            content: '', 
+        // PERUBAHAN: Gunakan reply dengan ephemeral
+        await interaction.reply({ 
             embeds: [detailEmbed], 
-            components: [buttonRow] 
+            components: [buttonRow],
+            ephemeral: true
         });
     }
 
@@ -657,10 +659,11 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'server');
 
-        await interaction.update({ 
-            content: '', 
+        // PERUBAHAN: Gunakan reply dengan ephemeral
+        await interaction.reply({ 
             embeds: [detailEmbed], 
-            components: [buttonRow] 
+            components: [buttonRow],
+            ephemeral: true
         });
     }
 
@@ -686,10 +689,11 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'decoration');
 
-        await interaction.update({ 
-            content: '', 
+        // PERUBAHAN: Gunakan reply dengan ephemeral
+        await interaction.reply({ 
             embeds: [detailEmbed], 
-            components: [buttonRow] 
+            components: [buttonRow],
+            ephemeral: true
         });
     }
 
@@ -697,56 +701,104 @@ client.on('interactionCreate', async (interaction) => {
     if (interaction.customId.startsWith('back_')) {
         const category = interaction.customId.replace('back_', '');
         
-        switch(category) {
-            case 'streaming':
-                const streamingEmbed = createStreamingCatalogEmbed();
-                const streamingDropdown = createProductDropdown();
-                await interaction.update({
-                    content: '',
-                    embeds: [streamingEmbed],
-                    components: [streamingDropdown]
-                });
-                break;
-                
-            case 'discord':
-                const discordEmbed = createDiscordCatalogEmbed();
-                const discordDropdown = createDiscordDropdown();
-                await interaction.update({
-                    content: '',
-                    embeds: [discordEmbed],
-                    components: [discordDropdown]
-                });
-                break;
-                
-            case 'server':
-                const serverEmbed = createServerCatalogEmbed();
-                const serverDropdown = createServerDropdown();
-                await interaction.update({
-                    content: '',
-                    embeds: [serverEmbed],
-                    components: [serverDropdown]
-                });
-                break;
-                
-            case 'decoration':
-                const decorationEmbed = createDecorationCatalogEmbed();
-                const decorationDropdown = createDecorationDropdown();
-                await interaction.update({
-                    content: '',
-                    embeds: [decorationEmbed],
-                    components: [decorationDropdown]
-                });
-                break;
-                
-            default:
-                // Default ke streaming catalog
-                const defaultEmbed = createStreamingCatalogEmbed();
-                const defaultDropdown = createProductDropdown();
-                await interaction.update({
-                    content: '',
-                    embeds: [defaultEmbed],
-                    components: [defaultDropdown]
-                });
+        // PERUBAHAN: Gunakan editReply atau followUp untuk tombol kembali
+        if (interaction.deferred || interaction.replied) {
+            switch(category) {
+                case 'streaming':
+                    const streamingEmbed = createStreamingCatalogEmbed();
+                    const streamingDropdown = createProductDropdown();
+                    await interaction.editReply({
+                        embeds: [streamingEmbed],
+                        components: [streamingDropdown]
+                    });
+                    break;
+                    
+                case 'discord':
+                    const discordEmbed = createDiscordCatalogEmbed();
+                    const discordDropdown = createDiscordDropdown();
+                    await interaction.editReply({
+                        embeds: [discordEmbed],
+                        components: [discordDropdown]
+                    });
+                    break;
+                    
+                case 'server':
+                    const serverEmbed = createServerCatalogEmbed();
+                    const serverDropdown = createServerDropdown();
+                    await interaction.editReply({
+                        embeds: [serverEmbed],
+                        components: [serverDropdown]
+                    });
+                    break;
+                    
+                case 'decoration':
+                    const decorationEmbed = createDecorationCatalogEmbed();
+                    const decorationDropdown = createDecorationDropdown();
+                    await interaction.editReply({
+                        embeds: [decorationEmbed],
+                        components: [decorationDropdown]
+                    });
+                    break;
+                    
+                default:
+                    const defaultEmbed = createStreamingCatalogEmbed();
+                    const defaultDropdown = createProductDropdown();
+                    await interaction.editReply({
+                        embeds: [defaultEmbed],
+                        components: [defaultDropdown]
+                    });
+            }
+        } else {
+            switch(category) {
+                case 'streaming':
+                    const streamingEmbed = createStreamingCatalogEmbed();
+                    const streamingDropdown = createProductDropdown();
+                    await interaction.reply({
+                        embeds: [streamingEmbed],
+                        components: [streamingDropdown],
+                        ephemeral: true
+                    });
+                    break;
+                    
+                case 'discord':
+                    const discordEmbed = createDiscordCatalogEmbed();
+                    const discordDropdown = createDiscordDropdown();
+                    await interaction.reply({
+                        embeds: [discordEmbed],
+                        components: [discordDropdown],
+                        ephemeral: true
+                    });
+                    break;
+                    
+                case 'server':
+                    const serverEmbed = createServerCatalogEmbed();
+                    const serverDropdown = createServerDropdown();
+                    await interaction.reply({
+                        embeds: [serverEmbed],
+                        components: [serverDropdown],
+                        ephemeral: true
+                    });
+                    break;
+                    
+                case 'decoration':
+                    const decorationEmbed = createDecorationCatalogEmbed();
+                    const decorationDropdown = createDecorationDropdown();
+                    await interaction.reply({
+                        embeds: [decorationEmbed],
+                        components: [decorationDropdown],
+                        ephemeral: true
+                    });
+                    break;
+                    
+                default:
+                    const defaultEmbed = createStreamingCatalogEmbed();
+                    const defaultDropdown = createProductDropdown();
+                    await interaction.reply({
+                        embeds: [defaultEmbed],
+                        components: [defaultDropdown],
+                        ephemeral: true
+                    });
+            }
         }
     }
 
