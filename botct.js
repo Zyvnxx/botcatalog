@@ -61,7 +61,7 @@ const products = {
     }
 };
 
-// Produk Discord Nitro & Joki (diperbarui)
+// Produk Discord Nitro & Joki (diperbarui - HAPUS JOKI VALORANT & JOKI ORBS)
 const discordProducts = {
     nitro_promo_via_link: {
         name: 'Nitro Promotion 3 Month - Via Link',
@@ -73,20 +73,10 @@ const discordProducts = {
         price: '45.000',
         details: 'Nitro Promotion 3 Bulan via Log\n• Bisa untuk semua user / new user\n• Dicialinkan oleh admin\n• Terima beres'
     },
-    joki_orbs: {
-        name: 'Joki Orbs (Apex Legends)',
-        price: '15.000/1k Orbs',
-        details: 'Jasa Top-up Orbs\n• Aman & Legal\n• Fast Process\n• Various Payment'
-    },
     joki_quest: {
         name: 'Joki Quest Discord (Orbs)',
         price: '10.000',
         details: 'OPEN JOKI QUEST DISCORD (ORBS)\n\nBenefit:\n• Terima bares\n• Bisa quest all games\n• Quest Video\n• Dapet benefit border / item\n\nProses via login'
-    },
-    joki_valorant: {
-        name: 'Joki Valorant Points',
-        price: '12.000/100 VP',
-        details: 'Top-up Valorant Points\n• Instant Delivery\n• All Region\n• Safe & Secure'
     }
 };
 
@@ -204,19 +194,9 @@ function createDiscordDropdown() {
                 value: 'nitro_promo_via_log'
             },
             {
-                label: 'Joki Orbs (Apex)',
-                description: `Rp 15.000/1k Orbs`,
-                value: 'joki_orbs'
-            },
-            {
                 label: 'Joki Quest Discord',
                 description: `Rp 10.000`,
                 value: 'joki_quest'
-            },
-            {
-                label: 'Joki Valorant Points',
-                description: `Rp 12.000/100 VP`,
-                value: 'joki_valorant'
             }
         );
 
@@ -325,9 +305,7 @@ function createDiscordCatalogEmbed() {
         .addFields(
             { name: 'Nitro Promo 3M - Via Link', value: `Rp 25.000`, inline: true },
             { name: 'Nitro Promo 3M - Via Log', value: `Rp 45.000`, inline: true },
-            { name: 'Joki Orbs (Apex)', value: `Rp 15.000/1k Orbs`, inline: true },
             { name: 'Joki Quest Discord', value: `Rp 10.000`, inline: true },
-            { name: 'Joki Valorant Points', value: `Rp 12.000/100 VP`, inline: true },
             { name: 'Layanan Lainnya', value: 'DM Admin untuk custom', inline: true }
         )
         .setFooter({
@@ -692,6 +670,20 @@ client.on('interactionCreate', async (interaction) => {
         });
     }
 });
+
+
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Bot is running');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Web server running on port ${PORT}`);
+});
+
 
 // Login bot dengan environment variable untuk keamanan
 client.login(process.env.DISCORD_TOKEN);
