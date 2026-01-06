@@ -1,15 +1,21 @@
 {
   "name": "botdiscordct",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discord Bot untuk DISC SHOP",
   "main": "botct.js",
   "scripts": {
+    "start": "node botct.js",
+    "dev": "node botct.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["discord", "bot", "shop"],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.25.1"
+    "discord.js": "^14.25.1",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
