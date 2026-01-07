@@ -347,9 +347,9 @@ const DIRECT_LINK = 'https://discord.com/channels/1452584833766129686/1452593411
 const ORDER_CHANNEL_MENTION = `<#${ORDER_CHANNEL_ID}>`;
 
 // URL gambar untuk embed
-const BANNER_IMAGE = 'https://image2url.com/r2/bucket1/images/1767693687798-b0a70de9-6f87-4690-ab51-890eefb93902.gif';
+const BANNER_IMAGE = 'https://image2url.com/r2/bucket1/gifs/1767794908164-5e4f7d1e-45f4-445d-8508-d73e8d9da4bd.gif';
 const THUMBNAIL_IMAGE = 'https://image2url.com/r2/bucket1/images/1767693842203-a4f88e68-d87e-4764-8de6-a6fd644ca47d.blob';
-const GAME_BANNER = 'https://image2url.com/r2/bucket1/images/1767693687798-b0a70de9-6f87-4690-ab51-890eefb93902.gif';
+const GAME_BANNER = 'https://image2url.com/r2/bucket1/gifs/1767794908164-5e4f7d1e-45f4-445d-8508-d73e8d9da4bd.gif';
 
 // Fungsi untuk membuat dropdown produk streaming
 function createProductDropdown() {
