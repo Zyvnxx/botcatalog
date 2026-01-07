@@ -34,9 +34,9 @@ const products = {
     netflix: {
         name: 'Netflix',
         description: 'Akses Netflix Premium',
-        price: '5.000 - 9.000',
+        price: '4.000 - 30.000',
         stock: 'Tersedia',
-        details: 'NETFLIX PREMIUM\n\n• 1 DAY: 5.000\n• 1 MONTH: 7.000\n• 3 MONTH: 9.000'
+        details: 'NETFLIX PREMIUM\n\n• 1 DAY: 4.000\n• 3 DAY: 8.000\n• 7 DAY: 15.000\n• 1 MONTH: 30.000'
     },
     canva: {
         name: 'Canva',
@@ -61,7 +61,7 @@ const products = {
     }
 };
 
-// Produk Discord Nitro & Joki (diperbarui - HAPUS JOKI VALORANT & JOKI ORBS)
+// Produk Discord Nitro & Joki
 const discordProducts = {
     nitro_promo_via_link: {
         name: 'Nitro Promotion 3 Month - Via Link',
@@ -118,108 +118,230 @@ const decorationProducts = {
     }
 };
 
-// === SISTEM RATE LIMITING YANG SESUAI DISCORD TOS ===
-class RateLimiter {
+// PRODUK GAME STEAM SHARING (DIUPDATE SESUAI PERMINTAAN)
+const gameProducts = {
+    blackmyth_wukong: {
+        name: 'Black Myth: Wukong',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Action RPG',
+        details: 'BLACK MYTH: WUKONG\n\n• Lifetime Access\n• Steam Family Sharing\n• Bebas Antrian\n• Support 24/7'
+    },
+    spiderman_miles: {
+        name: 'Spider-Man: Miles Morales',
+        price: 'Rp 30.000',
+        platform: 'Steam SHARING',
+        genre: 'Action-Adventure',
+        details: 'SPIDER-MAN: MILES MORALES\n\n• Full Game\n• Lifetime Update\n• No Queue\n• Instant Access'
+    },
+    spiderman_2: {
+        name: 'Spider-Man 2',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Action-Adventure',
+        details: 'SPIDER-MAN 2\n\n• Complete Edition\n• All DLC Included\n• Family Sharing\n• 24/7 Support'
+    },
+    fc25: {
+        name: 'FC 25',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Sports, Football',
+        details: 'FC 25\n\n• Latest Version\n• Online Mode Available\n• Lifetime Access\n• No Waiting'
+    },
+    fc26: {
+        name: 'FC 26',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Sports, Football',
+        details: 'FC 26\n\n• Latest Edition\n• Multiplayer Support\n• Family Sharing\n• Instant Delivery'
+    },
+    silent_hill: {
+        name: 'Silent Hill',
+        price: 'Rp 30.000',
+        platform: 'Steam SHARING',
+        genre: 'Horror, Survival',
+        details: 'SILENT HILL\n\n• Remastered Edition\n• Full Horror Experience\n• Lifetime Access\n• No Queue'
+    },
+    cyberpunk: {
+        name: 'Cyberpunk 2077',
+        price: 'Rp 30.000',
+        platform: 'Steam SHARING',
+        genre: 'Action RPG, Cyberpunk',
+        details: 'CYBERPUNK 2077\n\n• Phantom Liberty DLC Included\n• All Updates\n• Family Sharing\n• 24/7 Support'
+    },
+    it_takes_two: {
+        name: 'It Takes Two',
+        price: 'Rp 25.000',
+        platform: 'Steam SHARING',
+        genre: 'Adventure, Co-op',
+        details: 'IT TAKES TWO\n\n• Perfect for Couples/Friends\n• Online Co-op\n• Lifetime Access\n• Instant Delivery'
+    },
+    f1_25: {
+        name: 'F1 2025',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Racing, Simulation',
+        details: 'F1 2025\n\n• Latest Season\n• All Tracks & Teams\n• Multiplayer Ready\n• Family Sharing'
+    },
+    stray: {
+        name: 'Stray',
+        price: 'Rp 25.000',
+        platform: 'Steam SHARING',
+        genre: 'Adventure, Indie',
+        details: 'STRAY\n\n• Cat Adventure Game\n• Beautiful Graphics\n• Lifetime Access\n• No Waiting'
+    },
+    nba_2025: {
+        name: 'NBA 2025',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Sports, Basketball',
+        details: 'NBA 2025\n\n• Latest Roster\n• Online Multiplayer\n• Family Sharing\n• Instant Access'
+    },
+    nba_2026: {
+        name: 'NBA 2026',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Sports, Basketball',
+        details: 'NBA 2026\n\n• Most Recent Edition\n• All Teams Updated\n• Lifetime Access\n• No Queue'
+    },
+    red_dead_2: {
+        name: 'Red Dead Redemption 2',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Action-Adventure, Western',
+        details: 'RED DEAD REDEMPTION 2\n\n• Story Mode Only\n• Lifetime Access\n• Family Sharing\n• 24/7 Support'
+    },
+    five_hearts: {
+        name: 'Five Hearts Under One Roof',
+        price: 'Rp 30.000',
+        platform: 'Steam SHARING',
+        genre: 'Simulation, Dating',
+        details: 'FIVE HEARTS UNDER ONE ROOF\n\n• Visual Novel\n• Multiple Endings\n• Lifetime Update\n• No Waiting'
+    },
+    resident_evil_4: {
+        name: 'Resident Evil 4 Gold Edition',
+        price: 'Rp 30.000',
+        platform: 'Steam SHARING',
+        genre: 'Survival Horror',
+        details: 'RESIDENT EVIL 4 GOLD EDITION\n\n• Full Game + All DLC\n• Remastered Edition\n• Family Sharing\n• Instant Access'
+    },
+    inzoi: {
+        name: 'InZOI',
+        price: 'Rp 35.000',
+        platform: 'Steam SHARING',
+        genre: 'Life Simulation',
+        details: 'INZOI\n\n• Latest Life Simulator\n• Complete Edition\n• Lifetime Access\n• Family Sharing\n• Instant Delivery'
+    }
+};
+
+// === SISTEM COOLDOWN YANG DIPERBAIKI ===
+class CommandCooldown {
     constructor() {
-        // Collection untuk menyimpan data rate limit per user
-        this.commands = new Collection();
-        this.interactions = new Collection();
+        this.cooldowns = new Collection();
+        this.cooldownTime = 3000; // 3 detik untuk command
+        this.ignoredInteractions = ['select_product', 'select_discord', 'select_server', 'select_decoration', 'select_game', 'back_'];
         
-        // Batas yang aman sesuai Discord TOS (jauh di bawah batas Discord)
-        this.commandLimit = 3; // 3 command per 10 detik
-        this.interactionLimit = 5; // 5 interaction per 10 detik
-        this.windowMs = 10000; // 10 detik window
-        
-        // Auto cleanup setiap 30 detik
-        setInterval(() => this.cleanup(), 30000);
+        setInterval(() => this.cleanup(), 60000); // Cleanup setiap 1 menit
     }
     
-    // Check command rate limit
-    checkCommand(userId) {
-        const now = Date.now();
-        const userData = this.commands.get(userId) || { timestamps: [] };
+    // HANYA cek cooldown untuk command dengan prefix '!'
+    checkCommand(message) {
+        const content = message.content.toLowerCase();
         
-        // Filter timestamps yang masih dalam window
-        userData.timestamps = userData.timestamps.filter(time => now - time < this.windowMs);
-        
-        // Check jika melebihi limit
-        if (userData.timestamps.length >= this.commandLimit) {
-            const oldest = userData.timestamps[0];
-            const waitTime = Math.ceil((oldest + this.windowMs - now) / 1000);
-            return {
-                limited: true,
-                waitTime: waitTime
-            };
+        // Hanya proses jika dimulai dengan '!' dan bukan dari bot
+        if (!content.startsWith('!') || message.author.bot) {
+            return { shouldProcess: true, isCommand: false };
         }
         
-        // Tambahkan timestamp baru
-        userData.timestamps.push(now);
-        this.commands.set(userId, userData);
+        const userId = message.author.id;
+        const command = content.split(' ')[0]; // Ambil command pertama
         
+        // Valid commands yang diketahui
+        const validCommands = ['!catalog', '!catalogdc', '!catalogsv', '!catalogdeco', '!cataloggame'];
+        
+        // Jika bukan command yang valid, skip cooldown
+        if (!validCommands.includes(command)) {
+            return { shouldProcess: true, isCommand: false };
+        }
+        
+        const key = `${userId}_${command}`;
+        const now = Date.now();
+        
+        // Cek jika user ada dalam cooldown
+        if (this.cooldowns.has(key)) {
+            const expirationTime = this.cooldowns.get(key) + this.cooldownTime;
+            
+            if (now < expirationTime) {
+                const waitTime = Math.ceil((expirationTime - now) / 1000);
+                return {
+                    shouldProcess: false,
+                    isCommand: true,
+                    waitTime: waitTime,
+                    command: command
+                };
+            }
+        }
+        
+        // Set cooldown baru
+        this.cooldowns.set(key, now);
+        return { shouldProcess: true, isCommand: true };
+    }
+    
+    // Interaksi UI TIDAK dikenakan cooldown
+    checkInteraction(interaction) {
+        const interactionId = interaction.customId;
+        
+        // Skip cooldown untuk interaksi UI (dropdown, button)
+        for (const ignoredId of this.ignoredInteractions) {
+            if (interactionId.startsWith(ignoredId)) {
+                return { limited: false };
+            }
+        }
+        
+        // Untuk interaksi lain, gunakan cooldown ringan
+        const userId = interaction.user.id;
+        const key = `${userId}_interaction`;
+        const now = Date.now();
+        
+        if (this.cooldowns.has(key)) {
+            const expirationTime = this.cooldowns.get(key) + 2000; // 2 detik
+            
+            if (now < expirationTime) {
+                const waitTime = Math.ceil((expirationTime - now) / 1000);
+                return {
+                    limited: true,
+                    waitTime: waitTime
+                };
+            }
+        }
+        
+        this.cooldowns.set(key, now);
         return { limited: false };
     }
     
-    // Check interaction rate limit
-    checkInteraction(userId) {
-        const now = Date.now();
-        const userData = this.interactions.get(userId) || { timestamps: [] };
-        
-        // Filter timestamps yang masih dalam window
-        userData.timestamps = userData.timestamps.filter(time => now - time < this.windowMs);
-        
-        // Check jika melebihi limit
-        if (userData.timestamps.length >= this.interactionLimit) {
-            const oldest = userData.timestamps[0];
-            const waitTime = Math.ceil((oldest + this.windowMs - now) / 1000);
-            return {
-                limited: true,
-                waitTime: waitTime
-            };
-        }
-        
-        // Tambahkan timestamp baru
-        userData.timestamps.push(now);
-        this.interactions.set(userId, userData);
-        
-        return { limited: false };
-    }
-    
-    // Cleanup data lama
     cleanup() {
         const now = Date.now();
         
-        // Cleanup commands
-        for (const [userId, data] of this.commands.entries()) {
-            data.timestamps = data.timestamps.filter(time => now - time < this.windowMs);
-            if (data.timestamps.length === 0) {
-                this.commands.delete(userId);
-            }
-        }
-        
-        // Cleanup interactions
-        for (const [userId, data] of this.interactions.entries()) {
-            data.timestamps = data.timestamps.filter(time => now - time < this.windowMs);
-            if (data.timestamps.length === 0) {
-                this.interactions.delete(userId);
+        for (const [key, timestamp] of this.cooldowns.entries()) {
+            if (now - timestamp > 300000) { // Hapus data lebih dari 5 menit
+                this.cooldowns.delete(key);
             }
         }
     }
     
-    // Reset rate limit untuk user tertentu
     resetUser(userId) {
-        this.commands.delete(userId);
-        this.interactions.delete(userId);
+        for (const [key] of this.cooldowns.entries()) {
+            if (key.startsWith(`${userId}_`)) {
+                this.cooldowns.delete(key);
+            }
+        }
     }
 }
 
-// Inisialisasi rate limiter
-const rateLimiter = new RateLimiter();
+// Inisialisasi cooldown manager
+const cooldownManager = new CommandCooldown();
 
-// Cooldown yang lebih aman untuk mencegah spam (10 detik)
-const messageCooldowns = new Collection();
-const MESSAGE_COOLDOWN = 10000; // 10 detik
-
-// Konfigurasi channel (ganti dengan ID channel Anda)
+// Konfigurasi channel
 const ORDER_CHANNEL_ID = '1452593411734376490';
 const DIRECT_LINK = 'https://discord.com/channels/1452584833766129686/1452593411734376490';
 const ORDER_CHANNEL_MENTION = `<#${ORDER_CHANNEL_ID}>`;
@@ -227,8 +349,9 @@ const ORDER_CHANNEL_MENTION = `<#${ORDER_CHANNEL_ID}>`;
 // URL gambar untuk embed
 const BANNER_IMAGE = 'https://image2url.com/r2/bucket1/images/1767693687798-b0a70de9-6f87-4690-ab51-890eefb93902.gif';
 const THUMBNAIL_IMAGE = 'https://image2url.com/r2/bucket1/images/1767693842203-a4f88e68-d87e-4764-8de6-a6fd644ca47d.blob';
+const GAME_BANNER = 'https://image2url.com/r2/bucket1/images/1767693687798-b0a70de9-6f87-4690-ab51-890eefb93902.gif';
 
-// Fungsi untuk membuat dropdown produk streaming (tanpa emoji)
+// Fungsi untuk membuat dropdown produk streaming
 function createProductDropdown() {
     const productList = new StringSelectMenuBuilder()
         .setCustomId('select_product')
@@ -251,7 +374,7 @@ function createProductDropdown() {
             },
             {
                 label: 'Netflix Premium',
-                description: `Rp 5.000 - 9.000`,
+                description: `Rp 4.000 - 30.000`,
                 value: 'netflix'
             },
             {
@@ -274,7 +397,7 @@ function createProductDropdown() {
     return new ActionRowBuilder().addComponents(productList);
 }
 
-// Fungsi untuk membuat dropdown Discord Nitro & Joki (tanpa emoji)
+// Fungsi untuk membuat dropdown Discord Nitro & Joki
 function createDiscordDropdown() {
     const discordList = new StringSelectMenuBuilder()
         .setCustomId('select_discord')
@@ -287,7 +410,7 @@ function createDiscordDropdown() {
             },
             {
                 label: 'Nitro Promo 3M - Via Log',
-                description: `Rp 45.000`,
+                description: `Rp 40.000`,
                 value: 'nitro_promo_via_log'
             },
             {
@@ -300,7 +423,7 @@ function createDiscordDropdown() {
     return new ActionRowBuilder().addComponents(discordList);
 }
 
-// Fungsi untuk membuat dropdown Server Setup & Bot (tanpa emoji)
+// Fungsi untuk membuat dropdown Server Setup & Bot
 function createServerDropdown() {
     const serverList = new StringSelectMenuBuilder()
         .setCustomId('select_server')
@@ -321,7 +444,7 @@ function createServerDropdown() {
     return new ActionRowBuilder().addComponents(serverList);
 }
 
-// Fungsi untuk membuat dropdown Decoration (tanpa emoji)
+// Fungsi untuk membuat dropdown Decoration
 function createDecorationDropdown() {
     const decorationList = new StringSelectMenuBuilder()
         .setCustomId('select_decoration')
@@ -352,7 +475,88 @@ function createDecorationDropdown() {
     return new ActionRowBuilder().addComponents(decorationList);
 }
 
-// Fungsi untuk membuat tombol order dengan category tracking (tanpa emoji)
+// Fungsi untuk membuat dropdown Game Steam (UPDATED)
+function createGameDropdown() {
+    const gameList = new StringSelectMenuBuilder()
+        .setCustomId('select_game')
+        .setPlaceholder('Pilih game yang ingin dibeli')
+        .addOptions(
+            {
+                label: 'Black Myth: Wukong',
+                description: 'Rp 35.000',
+                value: 'blackmyth_wukong'
+            },
+            {
+                label: 'Spider-Man: Miles Morales',
+                description: 'Rp 30.000',
+                value: 'spiderman_miles'
+            },
+            {
+                label: 'Spider-Man 2',
+                description: 'Rp 35.000',
+                value: 'spiderman_2'
+            },
+            {
+                label: 'FC 25',
+                description: 'Rp 35.000',
+                value: 'fc25'
+            },
+            {
+                label: 'FC 26',
+                description: 'Rp 35.000',
+                value: 'fc26'
+            },
+            {
+                label: 'Silent Hill',
+                description: 'Rp 30.000',
+                value: 'silent_hill'
+            },
+            {
+                label: 'Cyberpunk 2077',
+                description: 'Rp 30.000',
+                value: 'cyberpunk'
+            },
+            {
+                label: 'It Takes Two',
+                description: 'Rp 25.000',
+                value: 'it_takes_two'
+            },
+            {
+                label: 'F1 2025',
+                description: 'Rp 35.000',
+                value: 'f1_25'
+            },
+            {
+                label: 'Stray',
+                description: 'Rp 25.000',
+                value: 'stray'
+            },
+            {
+                label: 'Red Dead Redemption 2',
+                description: 'Rp 35.000',
+                value: 'red_dead_2'
+            },
+            {
+                label: 'Five Hearts Under One Roof',
+                description: 'Rp 30.000',
+                value: 'five_hearts'
+            },
+            {
+                label: 'Resident Evil 4 Gold',
+                description: 'Rp 30.000',
+                value: 'resident_evil_4'
+            },
+            {
+                label: 'InZOI',
+                description: 'Rp 35.000',
+                value: 'inzoi'
+            }
+        );
+
+    return new ActionRowBuilder().addComponents(gameList);
+}
+
+// Fungsi untuk membuat tombol order dengan category tracking
 function createOrderButtons(productId, productName, category) {
     return new ActionRowBuilder()
         .addComponents(
@@ -367,7 +571,22 @@ function createOrderButtons(productId, productName, category) {
         );
 }
 
-// Fungsi untuk membuat catalog streaming embed (tanpa emoji)
+// Fungsi untuk membuat tombol order khusus game
+function createGameOrderButtons(productId, productName) {
+    return new ActionRowBuilder()
+        .addComponents(
+            new ButtonBuilder()
+                .setLabel('Buka Channel Order')
+                .setURL(DIRECT_LINK)
+                .setStyle(ButtonStyle.Link),
+            new ButtonBuilder()
+                .setCustomId('back_game')
+                .setLabel('Kembali ke Catalog Game')
+                .setStyle(ButtonStyle.Secondary)
+        );
+}
+
+// Fungsi untuk membuat catalog streaming embed (TANPA EMOJI)
 function createStreamingCatalogEmbed() {
     return new EmbedBuilder()
         .setColor('#FF1493')
@@ -379,19 +598,19 @@ function createStreamingCatalogEmbed() {
             { name: 'Vidio', value: `Rp 18.000 - 30.000`, inline: true },
             { name: 'Vision+', value: `Rp 9.000 - 27.000`, inline: true },
             { name: 'Spotify', value: `Rp 21.000 - 30.000`, inline: true },
-            { name: 'Netflix', value: `Rp 5.000 - 9.000`, inline: true },
+            { name: 'Netflix', value: `Rp 4.000 - 30.000`, inline: true },
             { name: 'Canva', value: `Rp 1.500 - 9.000`, inline: true },
             { name: 'CapCut', value: `Rp 11.000 - 27.000`, inline: true },
             { name: 'WeTV', value: `Rp 8.000 - 31.000`, inline: true }
         )
         .setFooter({
-            text: 'DISC SHOP • Gift Available',
+            text: 'DISC SHOP • Gift Available • Instant Delivery',
             iconURL: THUMBNAIL_IMAGE
         })
         .setTimestamp();
 }
 
-// Fungsi untuk membuat catalog Discord embed (tanpa emoji)
+// Fungsi untuk membuat catalog Discord embed (TANPA EMOJI)
 function createDiscordCatalogEmbed() {
     return new EmbedBuilder()
         .setColor('#5865F2')
@@ -403,7 +622,7 @@ function createDiscordCatalogEmbed() {
             { name: 'Nitro Promo 3M - Via Link', value: `Rp 25.000`, inline: true },
             { name: 'Nitro Promo 3M - Via Log', value: `Rp 45.000`, inline: true },
             { name: 'Joki Quest Discord', value: `Rp 10.000`, inline: true },
-            { name: 'Layanan Lainnya', value: 'DM Admin untuk custom', inline: true }
+            { name: 'Layanan Lainnya', value: 'DM Admin untuk custom request', inline: false }
         )
         .setFooter({
             text: 'DISC SHOP • Instant Delivery • Terima Beres',
@@ -412,7 +631,7 @@ function createDiscordCatalogEmbed() {
         .setTimestamp();
 }
 
-// Fungsi untuk membuat catalog Server embed (tanpa emoji)
+// Fungsi untuk membuat catalog Server embed (TANPA EMOJI)
 function createServerCatalogEmbed() {
     return new EmbedBuilder()
         .setColor('#00FF00')
@@ -423,7 +642,7 @@ function createServerCatalogEmbed() {
         .addFields(
             { name: 'Setup Server Discord', value: `Rp 50.000 - 250.000`, inline: true },
             { name: 'Bot Custom Discord', value: `Rp 10.000 - 300.000`, inline: true },
-            { name: 'Custom Request', value: 'DM Admin untuk konsultasi', inline: true }
+            { name: 'Custom Request', value: 'DM Admin untuk konsultasi gratis', inline: false }
         )
         .setFooter({
             text: 'DISC SHOP • Professional Services • Free Revisi',
@@ -432,7 +651,7 @@ function createServerCatalogEmbed() {
         .setTimestamp();
 }
 
-// Fungsi untuk membuat catalog Decoration embed (tanpa emoji)
+// Fungsi untuk membuat catalog Decoration embed (TANPA EMOJI)
 function createDecorationCatalogEmbed() {
     return new EmbedBuilder()
         .setColor('#FFD700')
@@ -441,12 +660,12 @@ function createDecorationCatalogEmbed() {
         .setImage(BANNER_IMAGE)
         .setThumbnail(THUMBNAIL_IMAGE)
         .addFields(
-            { name: 'Decoration with Nitro', value: 'Rp 22.000 - 65.000', inline: true },
-            { name: 'Decoration Non Nitro', value: 'Rp 28.000 - 125.000', inline: true },
-            { name: 'Bundle Jujutsu Kaisen', value: 'Rp 95.000', inline: true },
-            { name: 'Custom Bundle', value: 'Custom Price (Tanya Admin)', inline: true },
-            { name: 'Includes', value: 'Border, Name Plate, Profile Effect', inline: false },
-            { name: 'Konsultasi', value: 'DM Admin untuk custom request', inline: false }
+            { name: 'Nitro Decoration', value: 'Rp 20.000 - 65.000', inline: true },
+            { name: 'Standard Decoration', value: 'Rp 28.000 - 125.000', inline: true },
+            { name: 'Jujutsu Kaisen Bundle', value: 'Rp 95.000', inline: true },
+            { name: 'Custom Bundle', value: 'Custom Price (Konsultasi Admin)', inline: true },
+            { name: 'Includes', value: 'Border, Name Plate, Profile Effect, Custom Emoji', inline: false },
+            { name: 'Konsultasi Gratis', value: 'DM Admin untuk custom request & preview', inline: false }
         )
         .setFooter({
             text: 'DISC SHOP • Creative Designs • Premium Quality',
@@ -455,56 +674,85 @@ function createDecorationCatalogEmbed() {
         .setTimestamp();
 }
 
+// Fungsi untuk membuat catalog Game Steam embed (UPDATED)
+function createGameCatalogEmbed() {
+    return new EmbedBuilder()
+        .setColor('#7289DA')
+        .setTitle('DISC SHOP - GAME STEAM SHARING TERMURAH')
+        .setDescription('**Game Steam Sharing dengan Harga Terjangkau!**\n\n**DAFTAR GAME TERLARIS**')
+        .setImage(GAME_BANNER)
+        .setThumbnail(THUMBNAIL_IMAGE)
+        .addFields(
+            { name: 'Black Myth: Wukong', value: 'Rp 35.000', inline: true },
+            { name: 'Spider-Man: Miles Morales', value: 'Rp 30.000', inline: true },
+            { name: 'Spider-Man 2', value: 'Rp 30.000', inline: true },
+            { name: 'FC 25', value: 'Rp 37.000', inline: true },
+            { name: 'FC 26', value: 'Rp 74.000', inline: true },
+            { name: 'Silent Hill', value: 'Rp 30.000', inline: true },
+            { name: 'Cyberpunk 2077', value: 'Rp 30.000', inline: true },
+            { name: 'It Takes Two', value: 'Rp 25.000', inline: true },
+            { name: 'F1 2025', value: 'Rp 35.000', inline: true },
+            { name: 'Stray', value: 'Rp 25.000', inline: true },
+            { name: 'NBA 2025', value: 'Rp 35.000', inline: true },
+            { name: 'NBA 2026', value: 'Rp 60.000', inline: true },
+            { name: 'Red Dead Redemption 2', value: 'Rp 35.000', inline: true }
+        )
+        .addFields(
+            { name: 'Five Hearts Under One Roof', value: 'Rp 30.000', inline: true },
+            { name: 'Resident Evil 4 Gold Edition', value: 'Rp 30.000', inline: true },
+            { name: 'InZOI', value: 'Rp 35.000', inline: true }
+        )
+        .addFields(
+            { 
+                name: '📢 PERHATIAN! 📢', 
+                value: '**NYARI GAMES YANG GA ADA DI CATALOG ? LANGSUNG CHAT ADMIN AJA ! READY ALL GAME**\n\nKami menyediakan hampir semua game di Steam! Cukup tanya admin untuk game yang kamu cari.', 
+                inline: false 
+            },
+            { name: 'TOTAL GAME TERSEDIA', value: '15+ Game Terbaru (dan masih banyak lagi!)', inline: false },
+            { name: 'KEUNGGULAN', value: '• Steam Sharing\n• Lifetime Access\n• Bebas Antrian\n• Support 24/7\n• **READY ALL GAME - TANYA ADMIN!**', inline: false },
+            { name: 'CARA ORDER', value: `Kunjungi ${ORDER_CHANNEL_MENTION} dan ketik: \`!order [nama game]\`\n**ATAU langsung chat admin untuk game yang tidak ada di catalog!**`, inline: false }
+        )
+        .setFooter({
+            text: 'DISC SHOP • Steam Sharing • Garansi Lifetime • READY ALL GAME!',
+            iconURL: THUMBNAIL_IMAGE
+        })
+        .setTimestamp();
+}
+
 client.on('ready', () => {
-    console.log(`✅ Bot ${client.user.tag} sudah online!`);
+    console.log(`Bot ${client.user.tag} sudah online!`);
+    console.log(`Cooldown system aktif dengan pengaturan yang diperbaiki`);
+    console.log(`Game tambahan: Five Hearts Under One Roof, Red Dead 2, Resident Evil 4 Gold, InZOI telah ditambahkan!`);
 });
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
     
-    // === PERBAIKAN: Sistem rate limiting untuk commands ===
-    const userId = message.author.id;
+    // CEK COOLDOWN HANYA UNTUK COMMAND DENGAN PREFIX '!'
+    const cooldownCheck = cooldownManager.checkCommand(message);
     
-    // Check message cooldown untuk mencegah spam
-    if (messageCooldowns.has(userId)) {
-        const expirationTime = messageCooldowns.get(userId) + MESSAGE_COOLDOWN;
-        if (Date.now() < expirationTime) {
-            // Hanya kirim warning jika bukan admin
-            if (!message.member.permissions.has(PermissionFlagsBits.Administrator)) {
-                const timeLeft = Math.ceil((expirationTime - Date.now()) / 1000);
-                if (timeLeft > 0) {
-                    try {
-                        const warning = await message.reply({
-                            content: `⏳ Mohon tunggu ${timeLeft} detik sebelum menggunakan command lagi.`,
-                            ephemeral: true
-                        });
-                        setTimeout(() => warning.delete().catch(() => {}), 3000);
-                    } catch (error) {
-                        // Silent fail untuk menghindari error loop
-                    }
-                }
-            }
-            return;
-        }
-    }
-    
-    // Check rate limit untuk commands
-    const commandLimitCheck = rateLimiter.checkCommand(userId);
-    if (commandLimitCheck.limited && !message.member.permissions.has(PermissionFlagsBits.Administrator)) {
+    if (!cooldownCheck.shouldProcess && cooldownCheck.isCommand) {
+        // Hanya kirim warning untuk command yang terkena cooldown
         try {
             const warning = await message.reply({
-                content: `⏳ Terlalu banyak permintaan! Mohon tunggu ${commandLimitCheck.waitTime} detik.`,
+                content: `Mohon tunggu **${cooldownCheck.waitTime} detik** sebelum menggunakan command \`${cooldownCheck.command}\` lagi.`,
                 ephemeral: true
             });
-            setTimeout(() => warning.delete().catch(() => {}), 3000);
+            
+            // Hapus warning setelah 3 detik
+            setTimeout(() => {
+                warning.delete().catch(() => {});
+            }, 3000);
         } catch (error) {
             // Silent fail
         }
         return;
     }
     
-    // Set cooldown untuk message berikutnya
-    messageCooldowns.set(userId, Date.now());
+    // JIKA BUKAN COMMAND, LANGSUNG RETURN (TIDAK ADA COOLDOWN)
+    if (!cooldownCheck.isCommand) {
+        return;
+    }
     
     // Command untuk menampilkan catalog streaming utama
     if (message.content === '!catalog') {
@@ -553,24 +801,34 @@ client.on('messageCreate', async (message) => {
 
         await message.channel.send({ embeds: [embed], components: [dropdownRow] });
     }
+
+    // Command untuk menampilkan catalog Game Steam (FITUR BARU)
+    if (message.content === '!cataloggame') {
+        if (!message.member.permissions.has(PermissionFlagsBits.Administrator)) {
+            return message.reply('Hanya admin yang bisa menggunakan command ini!');
+        }
+
+        const embed = createGameCatalogEmbed();
+        const dropdownRow = createGameDropdown();
+
+        await message.channel.send({ embeds: [embed], components: [dropdownRow] });
+    }
 });
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isButton() && !interaction.isStringSelectMenu()) return;
 
-    // === PERBAIKAN: Sistem rate limiting untuk interactions ===
-    const userId = interaction.user.id;
+    // INTERAKSI UI (DROPDOWN, BUTTON) TIDAK DIKENAKAN COOLDOWN KETAT
+    const cooldownCheck = cooldownManager.checkInteraction(interaction);
     
-    // Check rate limit untuk interactions
-    const interactionLimitCheck = rateLimiter.checkInteraction(userId);
-    if (interactionLimitCheck.limited) {
+    if (cooldownCheck.limited) {
         try {
             await interaction.reply({
-                content: `⏳ Terlalu banyak interaksi! Mohon tunggu ${interactionLimitCheck.waitTime} detik.`,
+                content: `Mohon tunggu ${cooldownCheck.waitTime} detik sebelum interaksi lagi.`,
                 ephemeral: true
             });
         } catch (error) {
-            // Silent fail untuk interaction yang sudah di-reply
+            // Silent fail
         }
         return;
     }
@@ -588,8 +846,8 @@ client.on('interactionCreate', async (interaction) => {
             .setThumbnail(THUMBNAIL_IMAGE)
             .addFields(
                 { name: 'Harga', value: `Rp ${product.price}`, inline: true },
-                { name: 'Stok', value: product.stock, inline: true },
-                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`!order ${product.name}\``, inline: false }
+                { name: 'Stok', value: `${product.stock}`, inline: true },
+                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`\`\`!order ${product.name}\`\`\``, inline: false }
             )
             .setFooter({ 
                 text: 'DISC SHOP • Klik tombol di bawah untuk langsung order',
@@ -599,11 +857,10 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'streaming');
 
-        // PERUBAHAN: Gunakan reply dengan ephemeral
         await interaction.reply({ 
             embeds: [detailEmbed], 
             components: [buttonRow],
-            ephemeral: true  // ← INI YANG MEMBUAT HANYA USER YANG MELIHAT
+            ephemeral: true
         });
     }
 
@@ -619,7 +876,7 @@ client.on('interactionCreate', async (interaction) => {
             .setThumbnail(THUMBNAIL_IMAGE)
             .addFields(
                 { name: 'Harga', value: `Rp ${product.price}`, inline: true },
-                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`!order ${product.name}\``, inline: false }
+                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`\`\`!order ${product.name}\`\`\``, inline: false }
             )
             .setFooter({ 
                 text: 'DISC SHOP • Klik tombol di bawah untuk langsung order',
@@ -629,7 +886,6 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'discord');
 
-        // PERUBAHAN: Gunakan reply dengan ephemeral
         await interaction.reply({ 
             embeds: [detailEmbed], 
             components: [buttonRow],
@@ -649,7 +905,7 @@ client.on('interactionCreate', async (interaction) => {
             .setThumbnail(THUMBNAIL_IMAGE)
             .addFields(
                 { name: 'Harga', value: `Rp ${product.price}`, inline: true },
-                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`!order ${product.name}\``, inline: false }
+                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`\`\`!order ${product.name}\`\`\``, inline: false }
             )
             .setFooter({ 
                 text: 'DISC SHOP • Klik tombol di bawah untuk langsung order',
@@ -659,7 +915,6 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'server');
 
-        // PERUBAHAN: Gunakan reply dengan ephemeral
         await interaction.reply({ 
             embeds: [detailEmbed], 
             components: [buttonRow],
@@ -679,7 +934,7 @@ client.on('interactionCreate', async (interaction) => {
             .setThumbnail(THUMBNAIL_IMAGE)
             .addFields(
                 { name: 'Harga', value: `Rp ${product.price}`, inline: true },
-                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`!order ${product.name}\``, inline: false }
+                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`\`\`!order ${product.name}\`\`\``, inline: false }
             )
             .setFooter({ 
                 text: 'DISC SHOP • Klik tombol di bawah untuk langsung order',
@@ -689,7 +944,38 @@ client.on('interactionCreate', async (interaction) => {
 
         const buttonRow = createOrderButtons(productId, product.name, 'decoration');
 
-        // PERUBAHAN: Gunakan reply dengan ephemeral
+        await interaction.reply({ 
+            embeds: [detailEmbed], 
+            components: [buttonRow],
+            ephemeral: true
+        });
+    }
+
+    // Handle Game Steam selection (FITUR BARU)
+    if (interaction.customId === 'select_game') {
+        const productId = interaction.values[0];
+        const product = gameProducts[productId];
+
+        const detailEmbed = new EmbedBuilder()
+            .setColor('#7289DA')
+            .setTitle(`${product.name}`)
+            .setDescription(product.details)
+            .setThumbnail(THUMBNAIL_IMAGE)
+            .addFields(
+                { name: 'Harga', value: `${product.price}`, inline: true },
+                { name: 'Platform', value: `${product.platform}`, inline: true },
+                { name: 'Genre', value: product.genre, inline: true },
+                { name: 'Cara Order', value: `Tulis di ${ORDER_CHANNEL_MENTION}:\n\`\`\`!order ${product.name}\`\`\``, inline: false },
+                { name: 'Garansi', value: 'Lifetime Access • Instant Delivery • Support 24/7', inline: false }
+            )
+            .setFooter({ 
+                text: 'DISC SHOP • Steam Sharing • Garansi Lifetime • Tanya Admin untuk game lain!',
+                iconURL: THUMBNAIL_IMAGE
+            })
+            .setTimestamp();
+
+        const buttonRow = createGameOrderButtons(productId, product.name);
+
         await interaction.reply({ 
             embeds: [detailEmbed], 
             components: [buttonRow],
@@ -701,51 +987,72 @@ client.on('interactionCreate', async (interaction) => {
     if (interaction.customId.startsWith('back_')) {
         const category = interaction.customId.replace('back_', '');
         
-        // PERUBAHAN: Gunakan editReply atau followUp untuk tombol kembali
         if (interaction.deferred || interaction.replied) {
+            await interaction.editReply({ 
+                content: 'Mengembalikan ke catalog...',
+                embeds: [],
+                components: []
+            });
+            
+            // Kirim embed baru berdasarkan kategori
             switch(category) {
                 case 'streaming':
                     const streamingEmbed = createStreamingCatalogEmbed();
                     const streamingDropdown = createProductDropdown();
-                    await interaction.editReply({
+                    await interaction.followUp({
                         embeds: [streamingEmbed],
-                        components: [streamingDropdown]
+                        components: [streamingDropdown],
+                        ephemeral: true
                     });
                     break;
                     
                 case 'discord':
                     const discordEmbed = createDiscordCatalogEmbed();
                     const discordDropdown = createDiscordDropdown();
-                    await interaction.editReply({
+                    await interaction.followUp({
                         embeds: [discordEmbed],
-                        components: [discordDropdown]
+                        components: [discordDropdown],
+                        ephemeral: true
                     });
                     break;
                     
                 case 'server':
                     const serverEmbed = createServerCatalogEmbed();
                     const serverDropdown = createServerDropdown();
-                    await interaction.editReply({
+                    await interaction.followUp({
                         embeds: [serverEmbed],
-                        components: [serverDropdown]
+                        components: [serverDropdown],
+                        ephemeral: true
                     });
                     break;
                     
                 case 'decoration':
                     const decorationEmbed = createDecorationCatalogEmbed();
                     const decorationDropdown = createDecorationDropdown();
-                    await interaction.editReply({
+                    await interaction.followUp({
                         embeds: [decorationEmbed],
-                        components: [decorationDropdown]
+                        components: [decorationDropdown],
+                        ephemeral: true
+                    });
+                    break;
+                    
+                case 'game':
+                    const gameEmbed = createGameCatalogEmbed();
+                    const gameDropdown = createGameDropdown();
+                    await interaction.followUp({
+                        embeds: [gameEmbed],
+                        components: [gameDropdown],
+                        ephemeral: true
                     });
                     break;
                     
                 default:
                     const defaultEmbed = createStreamingCatalogEmbed();
                     const defaultDropdown = createProductDropdown();
-                    await interaction.editReply({
+                    await interaction.followUp({
                         embeds: [defaultEmbed],
-                        components: [defaultDropdown]
+                        components: [defaultDropdown],
+                        ephemeral: true
                     });
             }
         } else {
@@ -790,6 +1097,16 @@ client.on('interactionCreate', async (interaction) => {
                     });
                     break;
                     
+                case 'game':
+                    const gameEmbed = createGameCatalogEmbed();
+                    const gameDropdown = createGameDropdown();
+                    await interaction.reply({
+                        embeds: [gameEmbed],
+                        components: [gameDropdown],
+                        ephemeral: true
+                    });
+                    break;
+                    
                 default:
                     const defaultEmbed = createStreamingCatalogEmbed();
                     const defaultDropdown = createProductDropdown();
@@ -801,66 +1118,6 @@ client.on('interactionCreate', async (interaction) => {
             }
         }
     }
-
-    // Handle tombol Order Sekarang
-    if (interaction.customId.startsWith('order_now_')) {
-        const productId = interaction.customId.replace('order_now_', '');
-        const product = products[productId] || 
-                       discordProducts[productId] || 
-                       serverProducts[productId] || 
-                       decorationProducts[productId];
-
-        if (!product) {
-            return interaction.reply({
-                content: 'Produk tidak ditemukan. Silahkan hubungi admin.',
-                ephemeral: true
-            });
-        }
-
-        const orderMessage = `**ORDER ${product.name.toUpperCase()}**\n\n` +
-                           `**Silahkan order di:** ${ORDER_CHANNEL_MENTION}\n` +
-                           `**Atau klik link:** ${DIRECT_LINK}\n\n` +
-                           `**Detail Produk:**\n` +
-                           `• Nama: ${product.name}\n` +
-                           `• Harga: Rp ${product.price}\n` +
-                           `• Stok: ${product.stock || 'Tersedia'}\n\n` +
-                           `**Format Order:**\n` +
-                           `\`!order ${product.name}\`\n\n` +
-                           `**Proses Order:**\n` +
-                           `1. Kunjungi channel order di atas\n` +
-                           `2. Ketik format order\n` +
-                           `3. Admin akan menghubungi Anda\n` +
-                           `4. Lakukan pembayaran\n` +
-                           `5. Dapatkan produk Anda!`;
-
-        await interaction.reply({
-            content: orderMessage,
-            ephemeral: true
-        });
-    }
-
-    // Handle contact admin
-    if (interaction.customId === 'contact_admin') {
-        const contactEmbed = new EmbedBuilder()
-            .setColor('#0099FF')
-            .setTitle('Hubungi Admin')
-            .setDescription('Silahkan hubungi admin kami untuk melanjutkan pembelian:')
-            .setThumbnail(THUMBNAIL_IMAGE)
-            .addFields(
-                { name: 'Discord', value: 'Buka ticket atau DM admin' },
-                { name: 'Format Order', value: `!order [nama produk]\n!joki [game] [jumlah]\n!setup [paket]\n!bot [paket]\n!deco [paket]\n\n**Channel Order:** ${ORDER_CHANNEL_MENTION}` }
-            )
-            .setFooter({ 
-                text: 'Response time: < 5 menit • 24/7 Support',
-                iconURL: THUMBNAIL_IMAGE
-            })
-            .setTimestamp();
-
-        await interaction.reply({ 
-            embeds: [contactEmbed], 
-            ephemeral: true 
-        });
-    }
 });
 
 // === WEB SERVER UNTUK KEEP ALIVE ===
@@ -868,18 +1125,17 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Bot Discord is running!');
+  res.send('Bot Discord Shop is running!');
 });
 
-// Health check endpoint untuk Render
 app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'ok', 
-    message: 'Bot is running',
+    message: 'Bot is running with improved cooldown system',
     timestamp: new Date().toISOString(),
-    rateLimiter: {
-      activeUsers: rateLimiter.commands.size + rateLimiter.interactions.size
-    }
+    bot: client.user?.tag || 'Starting...',
+    commands: ['!catalog', '!catalogdc', '!catalogsv', '!catalogdeco', '!cataloggame'],
+    games_count: Object.keys(gameProducts).length
   });
 });
 
@@ -888,5 +1144,5 @@ app.listen(PORT, () => {
   console.log(`Web server running on port ${PORT}`);
 });
 
-// Login bot dengan environment variable untuk keamanan
+// Login bot
 client.login(process.env.DISCORD_TOKEN);
